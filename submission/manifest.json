@@ -1,5 +1,5 @@
 {
- "collected_at": "2026-11-19T17:30:49",
+ "collected_at": "2026-11-19T17:50:21",
  "incident": "S1",
  "run_ids": {
   "base": "R-S1-before-20261119-173049-5110cc",
@@ -43,6 +43,6 @@
   "runs/R-S1-prepared-20261119-161213-5110cc/report.json": "712c7e709762a0262b600a06c443fccdfea31ec9b8dec59da1474375fdcb9221",
   "runs/R-S1-prepared-20261119-172535-5110cc/report.json": "80ec8630ebc8f75f3d9bbe74f76372c926d8129d4dff683e43a60ad549212b0a",
   "runs/R-S1-prepared-20261119-173049-5110cc/report.json": "885aeb3d2cc7ac2489423fd4b31c6e7070f91be01b16856bfb4e5e6647499ecb",
-  "submission.json": "c85316ce0a0bb02cfc5199d8697e1f1b361ad39b52e395038ad1e4b2d592d25b"
+  "submission.json": "753dd6a967e9f701a415aaf7d06e8618f40721b8684f116e04633eff021c6bd2"
  }
 }

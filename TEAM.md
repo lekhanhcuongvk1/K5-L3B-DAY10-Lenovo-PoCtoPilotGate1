@@ -17,8 +17,8 @@ Họ tên đầy đủ và MSSV của **mọi** thành viên; bàn 3 người th
 | --: | --------- | ---- | --- | :---------: |
 |   1 | Lê Khánh Cường | 2A202603999 | Nhóm trưởng · Kỹ sư cổng 1: điều phối, tích hợp guards, kiểm chứng và quản lý repo | Có |
 |   2 | Mai Danh Hiếu | 2A202603948 | Kỹ sư cổng 2: trace, behavioral test, monitor và bằng chứng đánh giá | Không |
-|   3 | Chờ bổ sung họ tên | Chờ MSSV | Sản phẩm và kinh doanh: tiêu chí, cách đo, chi phí/ROI và quyết định Gate 1 | Không |
-|   4 | Chờ bổ sung họ tên | Chờ MSSV | Vận hành và pháp lý: HAZOP, checklist, runbook, risk register và kiểm bài nộp | Không |
+|   3 | Trần Quang Minh | 2A202603929 | Sản phẩm và kinh doanh: tiêu chí, cách đo, chi phí/ROI và quyết định Gate 1 | Không |
+|   4 | Nguyễn Hải Quang | 2A202603936 | Vận hành và pháp lý: HAZOP, checklist, runbook, risk register và kiểm bài nộp | Không |
 
 Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, khớp bảng trên.
 
@@ -30,8 +30,8 @@ Phân công bao gồm kiểm chứng, giải thích và trình bày phần việ
 |---|---|---|---|
 | Lê Khánh Cường | Điều phối CP1–CP5; Phiếu B B7.1; Phiếu C C7/C9; guards và tích hợp repo | Đọc và giải thích G1/G2/G3, kiểm mối liên hệ nguyên nhân→cổng; nhận bản rà soát của ba người; chạy/xem lại kết quả kiểm cuối, tự review commit/push; trình Coach vấn đề lịch sử ký và snapshot | Bảng rà soát guards theo hàm/nhánh; commit tích hợp thực tế; kết quả kiểm cuối; ghi nhận hướng xử lý của Coach |
 | Mai Danh Hiếu | Phiếu A A2 offline metric; B0–B2, B7.2–B7.3; C0/C2/C8; monitors.py | Dò S1-01/S1-20/S1-07 và loạt S1-40…43; tái chạy hai adhoc; giải thích 4 monitor, mẫu số/ngưỡng/điểm mù; đối chiếu report ba mốc và regression | Bảng ticket@seed + bước sai đầu tiên; output adhoc; giá trị monitor nền/S1; ghi rõ lệnh tự chạy và run ID mới nếu có |
-| Thành viên 3 | Phiếu A A1–A5; B1/B3/B6 lăng kính kinh doanh, B7.4/B8; C5/C12; business | Đối chiếu PRD/eval card Lab9; giải thích ngưỡng đã ký và pass_rate/pass^5/pass@5; so chi phí/ROI theo kho; kiểm sensitivity công held; đề xuất và trình cả nhóm xác nhận v2 | Lý do từng ngưỡng; bảng base/prepared/after; phép tính 5.870đ→khoảng7.408đ khi cộng công giả định; lý do giữ Cải tiến thêm và hạn23/11 |
-| Thành viên 4 | B4–B5/B6 lăng kính người/pháp lý, B7.5–B7.6; C1/C3.5/C4/C6/C10/C11; operations/legal và submission | Rà HAZOP đủ dòng và nhánh ngoài code; xác minh PIC/quyền hạn/SLA; diễn giải trần2/ngày so hợp đồng3/7ngày; lập cách nhận task held/ACK; kiểm TEAM/members/manifest, deadline và LMS | Checklist9 nhóm có PIC; fault tree có bằng chứng lá; risk register; runbook có ai/ngưỡng/hành động/hạn; danh sách mục thiếu khi collect |
+| Trần Quang Minh | Phiếu A A1–A5; B1/B3/B6 lăng kính kinh doanh, B7.4/B8; C5/C12; business | Đối chiếu PRD/eval card Lab9; giải thích ngưỡng đã ký và pass_rate/pass^5/pass@5; so chi phí/ROI theo kho; kiểm sensitivity công held; đề xuất và trình cả nhóm xác nhận v2 | Lý do từng ngưỡng; bảng base/prepared/after; phép tính 5.870đ→khoảng7.408đ khi cộng công giả định; lý do giữ Cải tiến thêm và hạn23/11 |
+| Nguyễn Hải Quang | B4–B5/B6 lăng kính người/pháp lý, B7.5–B7.6; C1/C3.5/C4/C6/C10/C11; operations/legal và submission | Rà HAZOP đủ dòng và nhánh ngoài code; xác minh PIC/quyền hạn/SLA; diễn giải trần2/ngày so hợp đồng3/7ngày; lập cách nhận task held/ACK; kiểm TEAM/members/manifest, deadline và LMS | Checklist9 nhóm có PIC; fault tree có bằng chứng lá; risk register; runbook có ai/ngưỡng/hành động/hạn; danh sách mục thiếu khi collect |
 
 Quy tắc phối hợp: người phụ trách đề xuất sửa, Cường tích hợp. Không sửa tiêu chí đã ký, snapshot, file khóa hoặc nhật ký. Nếu đổi guards/monitors/operating_gates thì chạy lại public tests, grade S1 và collect trước commit; các run ID trong phiếu phải cập nhật theo bản thực tế. Mỗi người tự nộp link repo lên LMS.
 
@@ -72,7 +72,7 @@ Tôi phụ trách kiểm chứng và tích hợp kết quả kỹ thuật, có s
 - **Điều rút ra từ hồ sơ:** một report xanh chưa đủ quyết định pilot. Cần kiểm cả trường hợp AI từ chối sai (S1-07), chi phí phát sinh cho con người và giới hạn của dữ liệu; cổng bảo vệ bên thứ ba phải đặt đúng hành động để không giữ cả quyền lợi hợp lệ của khách.
 - **Điều còn chưa chắc:** công và thời gian xử lý2 ca lỗi hãng giữ/ngày trong vận hành thật, cùng dữ liệu lỗi7ngày, có làm CT vượt chi phí thủ công hoặc chạm ngưỡng ngưng tuyến hay không. Nhóm cần đo thêm và có Coach xác nhận thủ tục trước khi kết luận đủ điều kiện pilot.
 
-## Mai Danh Hiếu - 2A202603948
+## MaiDanhHieu-2A202603948
 
 ### Phần việc phụ trách
 
@@ -102,7 +102,7 @@ Nội dung chuyên môn của phần việc:
 - **Điều rút ra từ hồ sơ:** phải theo dõi cả quyết định không hành động và quyết định ghi tiền. Cổng kiểm lệnh hoàn có thể đúng nhưng hệ thống vẫn từ chối sai; monitor có báo động không đồng nghĩa tác hại đã xảy ra.
 - **Điều còn chưa chắc:** tỷ lệ cảnh báo giả và khả năng mất telemetry khi triển khai thật. Cần đo lại theo cửa sổ thời gian, số lượng ticket và nguồn dữ liệu trước khi dùng ngưỡng mock để trực vận hành.
 
-## HoVaTenThanhVien3-MSSV
+## TranQuangMinh-2A202603929
 
 ### Phần việc phụ trách
 
@@ -133,7 +133,7 @@ Nội dung chuyên môn của phần việc:
 - **Điều rút ra từ hồ sơ:** pass cao và chi phí máy thấp chưa chứng minh có hiệu quả kinh tế; phải tính tiền mất, công người, phí trực và phân khúc yếu nhất. Quyết định Cải tiến thêm có thể đúng dù report cho phép cân nhắc Tiếp tục.
 - **Điều còn chưa chắc:** chi phí đối soát thật và phân bố tải theo kho có làm thay đổi ROI hay không. Trước pilot cần đo TCO, thời gian xử lý và độ phủ hữu ích thay vì suy rộng trực tiếp từ mock.
 
-## HoVaTenThanhVien4-MSSV
+## NguyenHaiQuang-2A202603936
 
 ### Phần việc phụ trách
 
