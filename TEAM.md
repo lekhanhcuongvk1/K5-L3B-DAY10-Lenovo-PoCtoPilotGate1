@@ -2,10 +2,10 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm (`TenNhom`, không dấu, không khoảng trắng):
-- Lớp: `L3A` / `L3B`
-- Repo của bàn: `K5-<L3A|L3B>-DAY10-<TenNhom>-PoCtoPilotGate1`
-- Thẻ sự cố đã bốc (S1–S8):
+- Tên nhóm (`TenNhom`, không dấu, không khoảng trắng): Lenovo
+- Lớp: `L3B`
+- Repo của bàn: `K5-L3B-DAY10-Lenovo-PoCtoPilotGate1`
+- Thẻ sự cố đã bốc (S1–S8): Chờ Coach giao, không tự chọn.
 
 ## Thành viên
 
@@ -13,14 +13,16 @@ Họ tên đầy đủ và MSSV của **mọi** thành viên; bàn 3 người th
 
 | STT | Họ và tên | MSSV | Vai | Trưởng nhóm |
 | --: | --------- | ---- | --- | :---------: |
-|   1 |           |      |     |             |
-|   2 |           |      |     |             |
-|   3 |           |      |     |             |
-|   4 |           |      |     |             |
+|   1 | Chờ bổ sung | | Kỹ sư cổng: guards, eval, regression (đề xuất) | Chờ xác nhận |
+|   2 | Chờ bổ sung | | Kỹ sư cổng: monitor, behavioral test, report (đề xuất) | |
+|   3 | Chờ bổ sung | | Sản phẩm và kinh doanh (đề xuất) | |
+|   4 | Chờ bổ sung | | Vận hành và pháp lý (đề xuất) | |
 
 Ghi `members` trong `submission/submission.json` theo dạng `"HoVaTen-MSSV"`, khớp bảng trên.
 
 ## Cá nhân
+
+Ghi nhận hỗ trợ: Codex hỗ trợ đọc đề, phân tích tĩnh code/dữ liệu và soạn bản nháp Phiếu A/B, tiêu chí. Đây không phải bằng chứng đóng góp của một thành viên cụ thể. Mỗi người tự bổ sung phần thực sự thực hiện, việc dùng AI, bằng chứng và exit ticket. PRD v1.1/eval card Lab 9 chưa có trong repo để đối chiếu; nhóm cần xác nhận đầu vào này với Coach.
 
 Mỗi thành viên tự viết một mục bên dưới (chép mẫu, đổi tiêu đề thành họ tên không dấu và MSSV, ví dụ `## NguyenVanAn-20241234`).
 
