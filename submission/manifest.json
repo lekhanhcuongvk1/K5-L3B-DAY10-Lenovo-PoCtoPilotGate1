@@ -1,5 +1,5 @@
 {
- "collected_at": "2026-11-19T17:50:21",
+ "collected_at": "2026-11-19T22:57:21",
  "incident": "S1",
  "run_ids": {
   "base": "R-S1-before-20261119-173049-5110cc",
@@ -20,11 +20,11 @@
   "config/operating_gates.round1.json": "23079d439e6bd212874713de878502068dd1036e2061ba9fa33e0f608edadaf9",
   "config/round1.lock": "0d31c012811bf1dfb221d372ea8411776daf2d4cca74da7c1c720a645c6836fe",
   "config/switches.json": "9fcdb809437346392c6ded442f4f562c357ef89a7688a454505f94bcd969866b",
-  "docs/final-handoff.md": "5214d9672f7a20eb27ed2f1deb2f761d1444d6b01e1bf5894cb4004ca5252733",
+  "docs/final-handoff.md": "0ea9a1bc766787866d8c10c8308830a57b29d2c580f8a8aab78f75926e75fa8f",
   "docs/form-a-criteria.md": "d684032ef9d98eb2986c6ff1856cc1ca8afba26958181c7d0739d5521917f279",
   "docs/form-b-evaluation-gates.md": "6d1f3295b8e1fdf56daf83077119990c065480133926b101b86646835a978cf4",
-  "docs/form-c-incident.md": "90a2253abc75e0a23c24f35bab148bebc5d504954bb0f2368e1742d1322750f4",
-  "docs/round1-handoff.md": "39c02fd71316ec9aa4f7303485787b052efab756fa63ce2f60d6727e5a14c21a",
+  "docs/form-c-incident.md": "a05a926638a27091eabb83d9344510301cef5cc460a3a6c405777194113729db",
+  "docs/round1-handoff.md": "be979a9d98a8f5919cedaaa11a59522cb1f055ec8e57674d6484f4eb98fd6911",
   "runs/grade-report.json": "52c0786b53d927613ddfcc2a300005450e111777a11f1305ac573aa22296acdb",
   "runs/grade-report.md": "c2af2d8b411cb616330a79b0979f6c1edf9dc0025131cee17027962b8f5422c0",
   "runs/history/R-S1-grade-20261119-161114-260dc8.json": "480ee22c94627a80da8215835cd78ae7c8fbdc378da20244b19f367003477f11",

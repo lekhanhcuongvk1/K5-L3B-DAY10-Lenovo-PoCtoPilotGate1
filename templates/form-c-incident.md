@@ -266,6 +266,29 @@ Giả định ngoài phần mềm: tracking/POD do hãng cập nhật phản án
 
 S1-20/21 trạng thái và ngày đã không khớp; ngoài thật có quét chậm/nhập tay, phản hồi của hãng trễ, người duyệt bận. DB đủ trường vẫn có thể sai sự thật; phần mềm không tự tạo được chứng từ hoặc con người trực.
 
+### Rà soát kinh doanh · Trần Quang Minh (2A202603929)
+
+Đối chiếu report cuối `R-S1-after-20261119-173049-5110cc`, mục `ops.cost`, `ops.segments` và monitor `held_carrier_strikes`. Các số dưới đây tách chi phí đã được mô phỏng khỏi công đối soát bổ sung còn là giả định.
+
+| Khoản mục | Cách tính / nguồn | Kết quả |
+|---|---|---:|
+| Chi phí trợ lý mỗi ngày | `agent_cost_per_day_vnd` | 8.304đ |
+| Chi phí duyệt mỗi ngày đã có trong grader | `review_cost_per_day_vnd` | 38.000đ |
+| Chi phí trực mỗi ngày | `standby_cost_per_day_vnd` | 30.000đ |
+| Tổng chi phí hiện tại | 8.304 + 38.000 + 30.000 | 76.304đ/ngày |
+| Chi phí hiện tại mỗi ticket | 76.304 / 13 ticket/ngày | khoảng 5.870đ |
+| Công đối soát bổ sung giả định | 2 ca held/ngày × 10.000đ/ca; giả định đây là công ngoài 38.000đ đã tính | 20.000đ/ngày |
+| Tổng chi phí khi cộng công giả định | 76.304 + 20.000 | 96.304đ/ngày |
+| Chi phí mỗi ticket khi cộng công giả định | 96.304 / 13 | khoảng 7.408đ |
+| Tiết kiệm ròng khi cộng công giả định | 13 × 10.000 − 96.304 | 33.696đ/ngày |
+| ROI khi cộng công giả định | 33.696 / 96.304 | khoảng 0,35 |
+
+Ngưỡng đã ký là chi phí ≤8.000đ/ticket và ROI ≥0,25. Với 13 ticket/ngày và không có tổn thất hoàn sai, tổng chi phí tối đa theo cả hai ngưỡng là 104.000đ/ngày: phần công bổ sung còn chịu được so với report là 104.000 − 76.304 = **27.696đ/ngày**, tương đương **13.848đ/ca** nếu có đúng 2 ca held/ngày. Kịch bản 10.000đ/ca còn đạt toàn gói, nhưng cần đo thời gian và đơn giá thật; không cộng trùng công đã có trong `review_cost_per_day_vnd`.
+
+Kho CT hiện có 3 ticket/ngày và chi phí 7.053đ/ticket (số đã làm tròn trong report). Nếu toàn bộ 20.000đ công bổ sung phát sinh ở CT thì chi phí CT xấp xỉ `(3 × 7.053 + 20.000) / 3 = 13.720đ/ticket`, cao hơn làm tay 10.000đ. Đây là kịch bản phân bổ để kiểm độ nhạy, chưa phải bằng chứng các ca held đều thuộc CT; cần ghi kho của từng ca và đo công thực tế. Ngưỡng 8.000đ là ngưỡng toàn gói đã ký; so sánh CT với làm tay phục vụ kiểm tra phân khúc yếu nhất.
+
+Vì vậy đề xuất **giữ Cải tiến thêm** ở C12: yêu cầu NV-OANH đối soát công bổ sung và phân bổ theo kho, NV-HANH kiểm khả năng nhận ca, nhóm xem lại trước 23/11/2026. Chưa coi phép tính giả định là xác nhận đủ điều kiện pilot. PRD v1.1/eval card Lab 9 vẫn thiếu để đối chiếu. Phần rà soát này được Codex hỗ trợ theo yêu cầu của Minh; không xác nhận thay nhóm về PRD, năng lực vận hành hoặc thủ tục snapshot.
+
 ---
 
 <a id="c6"></a>

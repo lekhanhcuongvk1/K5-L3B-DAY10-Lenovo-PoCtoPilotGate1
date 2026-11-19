@@ -116,17 +116,17 @@ Nội dung chuyên môn của phần việc:
 2. **Giải thích tiêu chí.** Ngưỡng pass_rate là 0,99 và pass^5 là 0,98; pass^5 đòi đúng cả 5 lần, khác pass@5 chỉ cần đúng ít nhất một lần. Các ngưỡng hoàn sai, lỗi hãng oan và PII bằng 0. Chi phí tối đa 8.000đ/ticket so với làm tay 10.000đ tạo biên 20%; nếu không mất tiền, ROI tương ứng là (10.000−8.000)/8.000 = 0,25. Tiêu chí được ký trước đo và không sửa để khớp kết quả.
 3. **Giải thích cổng kinh doanh.** Trần ngày 1.600.000đ bằng 80% Finance 2.000.000đ; ngân sách ticket 1.200đ chừa phần dự phòng dưới trần 1.500đ. Phạm vi mô phỏng giữ 100%, không loại ticket xấu để tăng điểm. ROI tối thiểu 0,25 khớp tiêu chí.
 4. **So sánh ba mốc S1.** Chi phí/ticket là 2.964đ → 6.616đ → 5.870đ; ROI −2,74 → 0,51 → 0,70. Base rẻ nhưng có 985.000đ hoàn sai trên 5 seed nên không phải phương án có lợi. Kho CT giảm từ 10.320đ prepared xuống 7.053đ after; vẫn cần xem riêng phân khúc này.
-5. **Phân tích chi phí chưa được mô hình hóa.** Hai ca trách nhiệm hãng giữ/ngày chưa có công riêng trong queue grader. Giả định cộng 20.000đ công vào 76.304đ chi phí/ngày thì tổng khoảng 7.408đ/ticket, ROI khoảng 0,35; tuy tổng còn đạt, kho CT có thể vượt làm tay. Đây là sensitivity, không phải kết quả đã đo thật.
+5. **Phân tích chi phí chưa được mô hình hóa.** Bổ sung bảng đối chiếu ở Phiếu C C5: 8.304đ công trợ lý + 38.000đ công duyệt + 30.000đ trực = 76.304đ/ngày. Với giả định công riêng cho 2 ca held là 20.000đ/ngày ngoài công đã tính, tổng là 96.304đ, tương đương khoảng 7.408đ/ticket và ROI 0,35. Biên công bổ sung tối đa theo ngưỡng đã ký là 27.696đ/ngày (13.848đ/ca nếu đúng 2 ca). Nếu toàn bộ 20.000đ phát sinh ở CT thì chi phí CT khoảng 13.720đ/ticket, cao hơn làm tay. Đây là các kịch bản giả định; cần đo công thật và tránh cộng trùng công duyệt đã có.
 6. **Cơ sở quyết định.** V2 giữ Cải tiến thêm dù mọi ngưỡng report đạt, vì còn thiếu lịch sử lỗi 7 ngày, đường nhận ca giữ và chi phí đầy đủ; hạn xem lại 23/11/2026. Việc đối chiếu PRD/eval card Lab9 và xác nhận của cả nhóm còn cần thực hiện; không nhận là đã hoàn thành khi tài liệu chưa có trong repo.
 
-**Sử dụng AI:** Codex hỗ trợ tiêu chí, phân tích số liệu và quyết định đề xuất. Trách nhiệm cá nhân được phân công là kiểm lý do, phép tính và trình nhóm xác nhận; giữ nguyên tiêu chí đã niêm phong.
+**Sử dụng AI:** Codex hỗ trợ tiêu chí, phân tích số liệu và quyết định đề xuất. Trong lần rà soát này, tôi yêu cầu Codex đối chiếu chi phí từ report cuối, bổ sung bảng tính và kịch bản công held vào C5, cập nhật bằng chứng trong mục cá nhân. Đây là phần tài liệu có AI hỗ trợ, không phải tuyên bố tôi đã tự chạy grade hoặc đo công vận hành thực tế. Tôi phụ trách giải thích phép tính và trình nhóm xác nhận; giữ nguyên tiêu chí đã niêm phong.
 
 ### Bằng chứng
 
 - Phiếu A A1/A2/A4; Phiếu B B3/B7.4/B8; Phiếu C C5/C12; `config/acceptance_criteria.json` và `config/operating_gates.json`.
-- Grade chung `R-S1-grade-20261119-161212-5110cc`; report after S1 `R-S1-after-20261119-161213-5110cc` có chi phí 5.870đ, ROI 0,70, coverage 1,0 và không vượt trần.
+- Grade chung cuối trong gói nộp: `R-S1-grade-20261119-173049-5110cc`; report after S1 `R-S1-after-20261119-173049-5110cc` có chi phí 5.870đ, ROI 0,70, coverage 1,0 và không vượt trần. Bảng tính C5 dùng `ops.cost` và `ops.segments` của chính report này; không tạo lần grade mới cho thay đổi tài liệu.
 - Quyết định `Cải tiến thêm` khớp Phiếu C C12 và `submission/submission.json`; ba câu bắt buộc đã trùng nội dung.
-- PRD v1.1/eval card Lab9 chưa có để đối chiếu; lịch sử ký cần Coach xác nhận. Đây là giới hạn hồ sơ, không coi là bằng chứng đã đạt.
+- Checker đã xác nhận commit ký gốc `4b9d370` lúc 15:06:11 trước lần đo đầu 15:10:11; tiêu chí và lock còn nguyên. Vấn đề snapshot vòng 1 chưa commit/push trước nhận thẻ vẫn cần Coach xác nhận riêng. PRD v1.1/eval card Lab9 chưa có để đối chiếu; không coi việc này là đã hoàn tất.
 
 ### Exit ticket
 
