@@ -1,5 +1,5 @@
 {
- "collected_at": "2026-11-19T22:57:21",
+ "collected_at": "2026-11-19T23:12:08",
  "incident": "S1",
  "run_ids": {
   "base": "R-S1-before-20261119-173049-5110cc",
@@ -23,7 +23,10 @@
   "docs/final-handoff.md": "0ea9a1bc766787866d8c10c8308830a57b29d2c580f8a8aab78f75926e75fa8f",
   "docs/form-a-criteria.md": "d684032ef9d98eb2986c6ff1856cc1ca8afba26958181c7d0739d5521917f279",
   "docs/form-b-evaluation-gates.md": "6d1f3295b8e1fdf56daf83077119990c065480133926b101b86646835a978cf4",
-  "docs/form-c-incident.md": "a05a926638a27091eabb83d9344510301cef5cc460a3a6c405777194113729db",
+  "docs/form-c-incident.md": "e897a9021cbf31d366006b83f5ba7e01d0de2e2e9a93c586477549937462ad1f",
+  "docs/lab9/eval_card.md": "5b1a302fe2ba24d51b418fa0b9c217806c1fd6b356a01806fd8478d4833ff9b6",
+  "docs/lab9/PRD_v1.1.md": "994c152f235187849f7265dc9fe0b8e0652b5477efaa52e34198a6ff92181f99",
+  "docs/lab9-crosswalk.md": "fe03bd58fdb7feceff7c294066d4535958cce484bffe182b1689c5a6dc2203f6",
   "docs/round1-handoff.md": "be979a9d98a8f5919cedaaa11a59522cb1f055ec8e57674d6484f4eb98fd6911",
   "runs/grade-report.json": "52c0786b53d927613ddfcc2a300005450e111777a11f1305ac573aa22296acdb",
   "runs/grade-report.md": "c2af2d8b411cb616330a79b0979f6c1edf9dc0025131cee17027962b8f5422c0",

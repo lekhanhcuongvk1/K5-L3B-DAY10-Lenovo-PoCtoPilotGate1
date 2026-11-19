@@ -126,7 +126,7 @@ Nội dung chuyên môn của phần việc:
 - Phiếu A A1/A2/A4; Phiếu B B3/B7.4/B8; Phiếu C C5/C12; `config/acceptance_criteria.json` và `config/operating_gates.json`.
 - Grade chung cuối trong gói nộp: `R-S1-grade-20261119-173049-5110cc`; report after S1 `R-S1-after-20261119-173049-5110cc` có chi phí 5.870đ, ROI 0,70, coverage 1,0 và không vượt trần. Bảng tính C5 dùng `ops.cost` và `ops.segments` của chính report này; không tạo lần grade mới cho thay đổi tài liệu.
 - Quyết định `Cải tiến thêm` khớp Phiếu C C12 và `submission/submission.json`; ba câu bắt buộc đã trùng nội dung.
-- Checker đã xác nhận commit ký gốc `4b9d370` lúc 15:06:11 trước lần đo đầu 15:10:11; tiêu chí và lock còn nguyên. Vấn đề snapshot vòng 1 chưa commit/push trước nhận thẻ vẫn cần Coach xác nhận riêng. PRD v1.1/eval card Lab9 chưa có để đối chiếu; không coi việc này là đã hoàn tất.
+- Checker đã xác nhận commit ký gốc `4b9d370` lúc 15:06:11 trước lần đo đầu 15:10:11; tiêu chí và lock còn nguyên. Vấn đề snapshot vòng 1 chưa commit/push trước nhận thẻ vẫn cần Coach xác nhận riêng. PRD v1.1/eval card Lab9 đã được bổ sung và đối chiếu tại `submission/docs/lab9-crosswalk.md`, kèm hai bản nguồn trong `submission/docs/lab9/`. Các ghi chú thiếu Lab9 trước đó phản ánh thời điểm chưa bổ sung tài liệu. Nhóm còn cần xác nhận chọn bản này làm nguồn chung; không coi đây là phê duyệt của giảng viên.
 
 ### Exit ticket
 

@@ -268,6 +268,8 @@ S1-20/21 trạng thái và ngày đã không khớp; ngoài thật có quét ch�
 
 ### Rà soát kinh doanh · Trần Quang Minh (2A202603929)
 
+**Cập nhật nguồn Day9:** đã bổ sung PRD v1.1/eval card và bảng đối chiếu tại `submission/docs/lab9-crosswalk.md`, kèm bản nguồn trong `submission/docs/lab9/`. Ghi chú thiếu Lab9 ở các phần soạn trước cập nhật này là trạng thái cũ. Nhóm còn cần xác nhận chọn bản này làm nguồn chung. Codex hỗ trợ lập bảng đối chiếu theo yêu cầu của Minh.
+
 Đối chiếu report cuối `R-S1-after-20261119-173049-5110cc`, mục `ops.cost`, `ops.segments` và monitor `held_carrier_strikes`. Các số dưới đây tách chi phí đã được mô phỏng khỏi công đối soát bổ sung còn là giả định.
 
 | Khoản mục | Cách tính / nguồn | Kết quả |
