@@ -1,12 +1,12 @@
 {
-  "team": "",
-  "members": [],
-  "incident": "",
-  "decision_v1": "",
-  "decision_v2": "",
+  "team": "K5-L3B-DAY10-Lenovo-PoCtoPilotGate1",
+  "members": ["LeKhanhCuong-2A202603999"],
+  "incident": "S1",
+  "decision_v1": "Cải tiến thêm",
+  "decision_v2": "Cải tiến thêm",
   "three_lines": {
-    "environment_assumption": "",
-    "reduce_or_prevent": "",
-    "measure_in_pilot": ""
+    "environment_assumption": "Chúng tôi giả định tracking/POD phản ánh đúng ngày giao và NV-OANH nhận được 2 ca lỗi hãng giữ mỗi ngày trong 30 phút; dữ liệu chậm hoặc người không nhận sẽ làm cơ chế kiểm soát thất bại.",
+    "reduce_or_prevent": "Gate ngăn ghi lỗi tự động thứ 3 cho cùng hãng/ngày và chặn dùng ngày giao thiếu trong mô phỏng tuần tự, nhưng chỉ giảm rủi ro thực tế vì chưa kiểm lịch sử 7 ngày, concurrency và dữ liệu DB sai.",
+    "measure_in_pilot": "Trước Bước đánh giá 2, phải đo lại độ đúng/freshness tracking, thời gian ACK và công xử lý ca lỗi hãng giữ, hàng chờ giờ cao điểm, TCO/ROI từng kho và khả năng dừng trong 5 phút; CT hiện 7.053đ/ticket chưa gồm toàn bộ công đối soát riêng."
   }
 }

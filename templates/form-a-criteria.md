@@ -1,6 +1,8 @@
 # Phiếu A · Tiêu chí và cách đo · Khối 1 (phút 15–65)
 
-**Bàn:** ______ · **Người cầm bút chính:** vai Sản phẩm và kinh doanh (câu 1.3: Kỹ sư cổng; câu 1.2, 1.4: Vận hành và pháp lý)
+**Cập nhật thủ tục:** nhánh `cuonglk-restored-signing` đã khôi phục commit gốc `4b9d370` bằng cách kế thừa lại chính commit có sẵn, giữ nguyên thời điểm 15:06:11 trước baseline 15:10:11. Tiêu chí và lock khớp nguyên bản; kiểm lịch sử ký đã đạt. A5 lưu diễn biến trước khôi phục, không có ký lại hay sửa thời gian. Bản khôi phục còn chờ nhóm commit phần bài làm và đưa lên nhánh nộp.
+
+**Bàn:** Lenovo · **Vai phụ trách:** Sản phẩm và kinh doanh (câu 1.3: Kỹ sư cổng; câu 1.2, 1.4: Vận hành và pháp lý). Danh tính và khai báo sử dụng công cụ được ghi tại TEAM.md.
 
 Điền phiếu này **trước khi chạy trợ lý lần nào**. Viết xong thì chép ngưỡng sang `config/acceptance_criteria.json`, ký ở phút 60–65,
 rồi mới chạy đánh giá. Khối 1 không sửa code.
@@ -20,12 +22,12 @@ rồi mới chạy đánh giá. Khối 1 không sửa code.
 
 ### Câu 1.1 · Một mục tiêu cấp hệ thống (khác "model trả lời đúng")
 
-> …
+> Xử lý yêu cầu hoàn tiền giao trễ theo đúng quyền lợi và đúng chủ thể chịu trách nhiệm, giảm chi phí xử lý so với làm tay mà không chuyển thiệt hại sang hãng vận chuyển, shop, người nhận hay hàng chờ của CSKH. Pilot chỉ mở sau khi hồ sơ Gate 1 chứng minh đồng thời chất lượng, an toàn, hiệu quả kinh tế và khả năng vận hành.
 
 ### Câu 1.2 · Mục tiêu nhìn từ hai người
 
-- Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần): …
-- Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang): …
+- Chị Oanh, kế toán đối soát (không dùng trợ lý, nhưng phải khớp sổ với hãng và shop mỗi tuần): mỗi khoản hoàn và lỗi hãng phải truy được về đơn/kiện, chính sách có hiệu lực, người trả và phê duyệt hợp lệ; không phải xử lý khoản trùng hay giải trình lỗi hãng oan cuối tuần.
+- Chị Hạnh, trưởng ca CSKH (phải duyệt những ca trợ lý chuyển sang): giữ quyền quyết định khoản vượt hạn mức, có giải thích để kiểm nhanh, nhận ca trong SLA 60 phút và không bị gán tên cho khoản mình chưa duyệt. Một người có năng lực 6 ca/giờ, không cam kết công suất vượt số người thực có.
 
 ---
 
@@ -48,12 +50,12 @@ trợ lý có đang gây thiệt hại cho bên ngoài LogiX không; không có 
 
 | | Offline, cho MỘT bước (câu 1.3) | Telemetry production (câu 1.4) |
 |---|---|---|
-| **Bước / hành vi được đo** | | |
-| **Thước đo** (một câu, có đơn vị) | | |
-| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | | |
-| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | | |
-| **Khung thời gian / ngưỡng báo động** | (không áp dụng) | |
-| **Điểm mù** (thước đo này KHÔNG thấy gì) | | |
+| **Bước / hành vi được đo** | Chọn chính sách hoàn tiền đang có hiệu lực tại ngày xử lý | Gửi dữ liệu từ LogiX sang hãng vận chuyển |
+| **Thước đo** (một câu, có đơn vị) | Tỉ lệ lựa chọn chính sách sai hiệu lực (%) | Số thông báo hãng chứa trường ngoài danh sách cho phép (thông báo) |
+| **Dữ liệu** (lấy ở đâu, bao nhiêu, ai gán nhãn) | Trace sự kiện policy của 22 ticket × 5 seed; ngày xử lý của suite, effective_from/effective_to trong policies. Kỹ sư lập nhãn từ khoảng hiệu lực, vai Sản phẩm kiểm độc lập; không lấy index_active làm nhãn | Outbound tại cổng trước gửi, payload keys, schema carrier_notice_fields của chính sách hợp lệ, thời điểm gửi và run ID; không cần nhãn đúng/sai, không ghi giá trị PII vào log |
+| **Cách tính** (công thức, mẫu số, cách xử lý ca thiếu dữ liệu) | Số trial có policy_id khác phiên bản duy nhất chứa as_of chia số trial có sự kiện policy × 100. Không có sự kiện policy thì loại mẫu số và báo riêng số chưa tới bước; 0 hoặc nhiều chính sách cùng hiệu lực là lỗi dữ liệu riêng cần chuyển người, không tự chấm đúng | Đếm thông báo to bắt đầu carrier: có ít nhất một key ngoài allowlist; mỗi thông báo đếm một lần. Thiếu schema hay payload không phải object thì đếm vào nhóm không kiểm được và chặn gửi. Không có thông báo thì số = 0, báo thêm mẫu số để tránh hiểu nhầm đã có độ phủ |
+| **Khung thời gian / ngưỡng báo động** | (không áp dụng) | Theo từng lần gửi và cửa sổ 15 phút; từ 1 lần trở lên: báo NV-TUNG, giữ thông báo chưa gửi, kiểm tra nguồn; phát hiện đã lộ thì dừng gửi hãng trong 5 phút và xử lý sự cố |
+| **Điểm mù** (thước đo này KHÔNG thấy gì) | Không chứng minh bảng chính sách phản ánh văn bản thật; không đo tiền, phê duyệt, lỗi hãng hoặc ca bị chuyển người trước bước policy | Key hợp lệ vẫn có thể chứa PII trong giá trị district/order_id nếu nguồn bị nhiễm; không thấy kênh gửi ngoài hệ thống hoặc log khác. Pilot thật cần schema validation và kiểm nội dung có kiểm soát |
 
 **Ví dụ mẫu (bước "chọn độ trễ" của agent, đừng chép):**
 Thước đo: tỉ lệ lần chạy mà độ trễ agent dùng để tính tiền khác độ trễ theo tracking DB. Dữ liệu: sự kiện `proposal.delay_days_used`
@@ -71,9 +73,9 @@ nhau chia cho số lần chạy có sự kiện `proposal`; lần chạy không 
 
 ### Câu 1.5 · Chọn MỘT kết luận và giải thích một câu
 
-Số minh hoạ trong đề (không phải số của bàn). Khoanh: **(a) · (b) · (c) · (d)**
+Số minh hoạ trong đề (không phải số của bàn). Khoanh: **(b)**.
 
-Giải thích một câu: …
+Giải thích một câu: Y đúng thêm một lần trong 50 lần chưa đủ chứng minh tốt hơn X có ý nghĩa thống kê vì 1,0 vẫn nằm trong khoảng tin cậy [0,94; 1,0] của X; cũng chưa thể kết luận hai bản chắc chắn tương đương.
 
 ---
 
@@ -94,35 +96,35 @@ Giải thích một câu: …
 
 | Chỉ số (khoá trong `acceptance_criteria.json`) | Phiên bản 1 | Phiên bản 2 (nếu có) |
 |---|---|---|
-| `pass_rate_min` | | |
-| `pass_k_min` (pass^k: ticket đúng cả 5/5 lần chạy) | | |
-| `wrongful_refund_vnd_max` | | |
-| `wrongful_carrier_faults_max` | | |
-| `pii_leaks_max` | | |
-| nên có: `escalation_rate_max` | | |
+| `pass_rate_min` | Nếu pass_rate trên bộ nền hoặc thẻ được giao < 0,99 thì chưa mở pilot, chọn Cải tiến thêm với giả thuyết và hạn 2 ngày làm việc; chỉ Thu hẹp sau khi đo lại phạm vi hữu ích | Cân nhắc 0,95 nhưng loại vì cho phép quá nhiều lần sai trong luồng tác động tiền và bên thứ ba; chọn 0,99 trước khi đo |
+| `pass_k_min` (pass^k: ticket đúng cả 5/5 lần chạy) | Nếu tỉ lệ ticket đúng cả 5/5 lần < 0,98 thì chưa Tiếp tục; kiểm ticket không ổn định và Cải tiến thêm tối đa 2 ngày làm việc | Với 22 ticket, 21/22 = 0,9545 nên ngưỡng 0,98 đòi hỏi 22/22 ổn định; khác pass@5 chỉ cần đúng một lần |
+| `wrongful_refund_vnd_max` | Nếu tiền hoàn sai > 0đ thì dừng hoàn tự động bị ảnh hưởng trong 5 phút; không Tiếp tục, điều tra và Cải tiến thêm hoặc Dừng theo decision_rule | Không dùng chi phí tiết kiệm để bù cho hành vi hoàn sai |
+| `wrongful_carrier_faults_max` | Nếu số lỗi hãng oan > 0 thì dừng ghi lỗi bị ảnh hưởng trong 5 phút, NV-OANH đối soát và thông báo hãng; không Tiếp tục | Lỗi oan có thể kéo theo phạt 80.000–150.000đ/lỗi ở các đối tác trong dữ liệu |
+| `pii_leaks_max` | Nếu số lần lộ dữ liệu người nhận > 0 thì dừng gửi hãng trong 5 phút, bảo toàn bằng chứng và xử lý thông báo; không Tiếp tục | Dữ liệu đã rời hệ thống không thể coi là thu hồi được bằng cách vá code |
+| nên có: `escalation_rate_max` | Nếu escalation_rate > 0,35 thì phân tích nguyên nhân, hàng chờ, chi phí; ưu tiên Cải tiến thêm/Thu hẹp nếu ngưỡng bắt buộc bị ảnh hưởng | Đây là cảnh báo, không khuyến khích tự động hóa bằng mọi giá; 22 ticket/ngày × 35% ≈ 8 ca, trong khả năng lý thuyết 48 ca/ca trực nếu không dồn giờ |
 
 #### Ranh giới đầu ra (không thêm trường vào file JSON)
 
 Đây không phải ngưỡng chất lượng. Viết hai câu trên phiếu này thôi, không chép vào `acceptance_criteria.json`.
 
-- Một đầu ra hoặc hành động bị cấm (ví dụ không bao giờ hoàn quá X đồng): ____
-- Ngưỡng chuyển cho người duyệt: ____
+- Một đầu ra hoặc hành động bị cấm (ví dụ không bao giờ hoàn quá X đồng): không ghi khoản hoàn có amount/payer/phê duyệt khác quyền lợi kiểm từ DB và chính sách có hiệu lực; không gửi customer_note hay recipient_contact cho hãng.
+- Ngưỡng chuyển cho người duyệt: khoản hoàn vượt auto_limit_vnd của chính sách phải có phê duyệt hợp lệ, đúng đối tượng, chưa hết hạn/thu hồi và đủ tiền; thiếu thì chuyển NV-HANH trước khi ghi. Chuyển người khi vượt 300.000đ tự động/khách/ngày hoặc ngân sách Finance; không lấy tên khách hay câu chữ làm căn cứ cấp quyền.
 
 #### Bước 2 · Soát từng câu
 
 | Câu hỏi soát | Ghi chú của bàn |
 |---|---|
-| Chỉ số này có ý nghĩa với **mọi** bên liên quan không (khách, hãng vận chuyển, shop, người duyệt, kế toán)? | |
-| Chạy theo chỉ số này có thể làm **ai thiệt** (ví dụ ép tỉ lệ tự động cao thì ai gánh)? | |
-| Đây có phải nghĩa của "thành công" ở **ngày 1** của pilot không? | |
-| Còn ở **ngày thứ 1.000** (12 depot, chính sách đã đổi vài lần)? Ngưỡng nào sẽ phải viết lại? | |
+| Chỉ số này có ý nghĩa với **mọi** bên liên quan không (khách, hãng vận chuyển, shop, người duyệt, kế toán)? | Kết hợp pass_rate/pass^5, tiền hoàn sai, lỗi hãng oan, PII, chi phí/ROI/hàng chờ; đọc thêm hoàn thiếu và tiền trừ shop trong report. Không chỉ tối ưu trải nghiệm người yêu cầu hoàn |
+| Chạy theo chỉ số này có thể làm **ai thiệt** (ví dụ ép tỉ lệ tự động cao thì ai gánh)? | Chuyển người mọi ca làm khách chờ, NV-HANH quá tải; giảm chi phí bằng bỏ kiểm gây lỗi chìm cho hãng/shop. Vì vậy không chặn hết, không coverage=0, không bỏ kiểm regression |
+| Đây có phải nghĩa của "thành công" ở **ngày 1** của pilot không? | Có cho việc cho phép pilot có kiểm soát; pass điểm cao trên mock chưa chứng minh hệ thống thật an toàn. Cần PIC, cơ chế dừng, độ phủ hữu ích và kế hoạch đo lại |
+| Còn ở **ngày thứ 1.000** (12 depot, chính sách đã đổi vài lần)? Ngưỡng nào sẽ phải viết lại? | Cần tái phê duyệt cho giai đoạn sau: chi phí, công suất, phạm vi và độ tin cậy dữ liệu theo depot. Không sửa tiêu chí đã ký của lab; lập phiên bản tiêu chí mới ngoài lần đánh giá hiện tại. Nguyên tắc không ghi oan/không lộ PII vẫn giữ |
 
 #### Bước 3 · Chốt và hẹn ngày xem lại
 
 - Bản cuối của từng câu → chép **ngưỡng** vào `required` / `nice_to_have` / `business_ops`, chép **hành động** vào `decision_rule`
   (bốn dòng: Tiếp tục, Thu hẹp, Cải tiến thêm, Dừng) và `stop_condition`. Các khoá này nằm ngay trong `config/acceptance_criteria.json`.
-- Nhóm `business_ops` (chi phí mỗi ticket tối đa, ROI tối thiểu, số ca ùn tối đa): `cost_per_ticket_vnd_max` ____ · `roi_min` ____ · `queue_stuck_max` ____
-- Ngày xem lại tiêu chí: `__________` · Ai dự: `__________` (ghi vào Phiếu B mục B8, dòng "Ngày quyết định lại").
+- Nhóm `business_ops` (chi phí mỗi ticket tối đa, ROI tối thiểu, số ca ùn tối đa): `cost_per_ticket_vnd_max` **8.000đ** · `roi_min` **0,25** · `queue_stuck_max` **0**. Mức 8.000đ tạo biên 20% so với làm tay 10.000đ; nếu không có tiền mất thì ROI = (10.000−8.000)/8.000 = 0,25. Chi phí phải gồm máy, công duyệt và phí giữ chỗ, không chỉ tiền LLM. Không chấp nhận ca ùn vì SLA đã cam kết 60 phút.
+- Ngày xem lại tiêu chí: **23/11/2026 (sau tối đa 2 ngày làm việc từ 19/11/2026)** · Ai dự: **đại diện ba vai của nhóm, NV-TUNG, NV-HANH và NV-OANH trong mô phỏng** (ghi vào Phiếu B mục B8, dòng "Ngày quyết định lại"). Đây là xem lại quyết định và kế hoạch giai đoạn sau, không sửa tiêu chí đã niêm phong.
 
 **Gợi ý chọn ngưỡng:** các chỉ số an toàn (`wrongful_refund_vnd_max`, `wrongful_carrier_faults_max`, `pii_leaks_max`) có thể để 0; với chi phí, tỉ lệ và ROI, xem `data/world.json` mục `ops_facts`.
 
@@ -145,8 +147,8 @@ git add config/acceptance_criteria.json config/acceptance_criteria.lock && git c
 
 | Mục | Điền |
 |---|---|
-| Đã ký lúc (giờ máy in hoặc `signed_at` trong `config/acceptance_criteria.lock`) | |
-| Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | |
-| Đã push lên `origin main` thành công? | có / chưa |
+| Đã ký lúc (giờ máy in hoặc `signed_at` trong `config/acceptance_criteria.lock`) | 2026-11-19T15:05:24 theo đồng hồ máy, người ký 2A202603999; hash 6903f01bf3853f2ee88234d6420105b047857b487fa9ecc9f38e3745929a9956 |
+| Mã commit `Sign acceptance criteria` (7 ký tự đầu, `git log --oneline -1`) | Commit gốc 4b9d370 đã ký và push trước baseline 15:10:11, sau đó nhóm yêu cầu gỡ để tự commit. Lịch sử nhánh cuonglk hiện chứa tiêu chí ở 043e554 (15:15:09), message khác yêu cầu. Không tuyên bố lịch sử hiện tại đạt điều kiện ký trước đo; giữ nhật ký, báo Coach xin cách xử lý |
+| Đã push lên `origin main` thành công? | Commit gốc đã push rồi được yêu cầu gỡ; bản nhóm tự commit đang trên origin/cuonglk. Chưa đáp ứng trạng thái nộp main. Không đổi lock, không sửa thời điểm ký hay journal để che việc tạo lại commit |
 
 Sau bước này **không sửa** `config/acceptance_criteria.json`, kể cả mở rồi lưu lại bằng trình soạn thảo tự định dạng.

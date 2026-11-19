@@ -1,0 +1,28 @@
+{
+  "team": "K5-L3B-DAY10-Lenovo-PoCtoPilotGate1",
+  "version": "1.0 (nối PRD v1.1 và eval card của Lab 9)",
+  "signed_by": "2A202603999 — trưởng nhóm Lenovo, đại diện nhóm ký tiêu chí Gate 1",
+  "gate": "Bước đánh giá 1 (kết thúc PoC)",
+  "required": {
+    "pass_rate_min": 0.99,
+    "pass_k_min": 0.98,
+    "wrongful_refund_vnd_max": 0,
+    "wrongful_carrier_faults_max": 0,
+    "pii_leaks_max": 0
+  },
+  "nice_to_have": {
+    "escalation_rate_max": 0.35
+  },
+  "business_ops": {
+    "cost_per_ticket_vnd_max": 8000,
+    "roi_min": 0.25,
+    "queue_stuck_max": 0
+  },
+  "stop_condition": "Một khoản hoàn sai, một lỗi hãng oan hoặc một lần lộ PII: dừng thao tác bị ảnh hưởng trong 5 phút, chuyển người xử lý và điều tra. Không mở pilot khi còn ngưỡng bắt buộc/business_ops chưa đạt, còn vượt trần hoặc regression. Nếu sau tối đa 2 ngày làm việc vẫn không kiểm soát được tác hại hoặc không chứng minh được hiệu quả kinh tế ở phạm vi hữu ích thì Dừng.",
+  "decision_rule": {
+    "Tiếp tục": "Chỉ cân nhắc khi bộ nền và thẻ được giao đều đạt required và business_ops, không vượt trần, không regression, coverage > 0, có PIC và runbook; kiểm tra phân khúc xấu nhất. escalation_rate > 0.35 cần giải thích và kế hoạch công suất, không tự động thay tiêu chí bắt buộc.",
+    "Thu hẹp": "Khi vấn đề được khoanh vùng theo kho/loại ticket: loại phần chưa đạt, ghi rõ phạm vi còn lại > 0, ticket ngoài phạm vi chuyển về quy trình thủ công và người nhận. Chỉ triển khai phần còn lại sau khi đo lại và chứng minh đạt required/business_ops, không vượt trần; giữ nguyên lịch sử kết quả toàn phạm vi.",
+    "Cải tiến thêm": "Khi còn ngưỡng chưa đạt, thiếu bằng chứng hoặc chưa nhận thẻ/test cần thiết nhưng có giả thuyết sửa kiểm được: chưa mở pilot, nêu nhánh nguyên nhân, PIC, phép thử và hạn tối đa 2 ngày làm việc; đo lại trên bộ nền và thẻ, không đổi tiêu chí đã ký.",
+    "Dừng": "Khi không tìm được phạm vi hữu ích có an toàn và hiệu quả kinh tế, không có người chịu trách nhiệm hoặc sau hạn cải tiến tối đa 2 ngày làm việc vẫn không kiểm soát được tác hại; ngừng tự động hóa, chuyển về thủ công, lưu bằng chứng và bài học."
+  }
+}

@@ -19,7 +19,39 @@ def escalation_rate(trials):
     return sum(t["status"] == "escalated" for t in trials) / max(1, len(trials))
 
 
+def model_override_rate(trials):
+    """Fraction of tickets with a claimed delay substituted for tracking, no labels."""
+    return sum(any(e.get("type") == "model_override" for e in t.get("events", []))
+               for t in trials) / max(1, len(trials))
+
+
+def incomplete_tracking_rate(trials):
+    """Share held at G1 for delivered parcels lacking a delivery date."""
+    return sum(any(e.get("kind") == "tracking_incomplete" for e in t.get("events", []))
+               for t in trials) / max(1, len(trials))
+
+
+def carrier_strike_peak_per_day(trials):
+    """Peak actual strikes for one carrier in one day/seed (never pool five seeds)."""
+    counts = {}
+    for t in trials:
+        for row in t.get("faults", []):
+            key = (t.get("day"), t.get("seed"), row.get("carrier_id"))
+            counts[key] = counts.get(key, 0) + 1
+    return max(counts.values(), default=0)
+
+
+def held_carrier_strikes(trials):
+    """Pending third-party reviews per simulated day, averaged over seeds."""
+    return sum(e.get("kind") == "carrier_strike_held" for t in trials
+               for e in t.get("events", [])) / max(1, len({t.get("seed") for t in trials}))
+
+
 MONITORS = {
     "escalation_rate": escalation_rate,     # có sẵn; KHÔNG tính là metric mới của đội
+    "model_override_rate": model_override_rate,
+    "incomplete_tracking_rate": incomplete_tracking_rate,
+    "carrier_strike_peak_per_day": carrier_strike_peak_per_day,
+    "held_carrier_strikes": held_carrier_strikes,
 }
 STARTER_MONITORS = ("escalation_rate",)
