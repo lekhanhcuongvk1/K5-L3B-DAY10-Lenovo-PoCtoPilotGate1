@@ -404,7 +404,7 @@ Vẽ lại cây ở C6. Ở mỗi nhánh đã xử lý, thêm một nút `VÀ [g
 | Tracking đủ trường nhưng sai sự thật/POD chậm | Vừa | Phạt oan/hỏng quyền lợi | NV-OANH | incomplete_tracking_rate>0 hoặc wrongful_carrier_faults≥1 | Đối soát POD, ưu tiên ca thiếu, giữ trách nhiệm hãng; chưa Tiếp tục nếu chưa có đường chứng từ | Đo freshness/độ đúng từ nguồn thật trước pilot | MAP/MEASURE |
 | Trần2/ngày không kiểm ngưng tuyến3/7ngày | Vừa | Mất tuyến12 tài xế | NV-TUNG | carrier_strike_peak_per_day≥2 hoặc held_carrier_strikes>0 | Bắt buộc kiểm lịch sử7ngày với Đối tác trước chế tài; hạn23/11, giữ Cải tiến thêm | Không suy ra đạt trần ngày là an toàn theo hợp đồng tuần | GOVERN/MANAGE |
 | Log lỗi giữ không có người nhận/công duyệt bị bỏ sót | Cao nếu triển khai nguyên mock | Queue thật và chi phí vượt | NV-OANH | held_carrier_strikes>0, ops.cost.cost_per_ticket_vnd>8.000đ hoặc kho>10.000đ | Tạo task bền vững/ACK30phút; đo công riêng. S1 có2 ca giữ/ngày chưa được grader tính; vì thế v2 chưa Tiếp tục | Kiểm TCO và trách nhiệm nhận ca trước mở pilot | MANAGE/MEASURE |
-| Commit tiêu chí bị tạo lại sau baseline và snapshot chưa commit trước nhận thẻ | Đã xảy ra trong lịch sử hiện tại | Không đạt điều kiện qua | NV-TUNG | criteria hash vẫn khớp nhưng check_submission báo thiếu commit ký, journal ghi baseline15:10:11 | Trình Coach A5 và journal, không sửa thời gian/nhãn/hash; nhóm tự xác nhận commit | Cần xử lý thủ tục độc lập với PASS-VISIBLE | GOVERN |
+| Bằng chứng commit/push snapshot vòng 1 trước nhận thẻ chưa được xác nhận | Còn mở; cần Coach xác nhận | Có thể ảnh hưởng điều kiện thủ tục dù visible đạt | NV-TUNG | round1.lock taken_at=15:17:11, hash e0e28e3d còn nguyên; timestamp/metric không chứng minh thời điểm push | Giữ nguyên lịch sử và snapshot, trình Coach bằng chứng Git/push. Commit ký gốc 4b9d370 lúc15:06:11 hiện đã có trước baseline15:10:11; không còn lỗi thiếu commit ký | Xác nhận thủ tục trước chốt nộp; không dùng PASS-VISIBLE thay phê duyệt của Coach | GOVERN |
 
 Quy tắc: **mỗi dòng phải đổi được một quyết định.** Cột "Dấu hiệu" phải là một metric có trong `monitors.py` hoặc trong report.
 
@@ -428,7 +428,7 @@ Ghi các dòng đổi sau sự cố. Mỗi dòng vẫn phải có một PIC có 
 | 6 Chi phí | Đạt report; chưa đủ TCO | S1 5.870đ,ROI0,70,CT7.053đ; chưa tính công held ngoài queue | NV-OANH |
 | 7 Vận hành | Chưa hoàn toàn | Có4 monitor và runbook; cần task held/ACK, diễn tập kênh và dừng | NV-TUNG |
 | 8 Con người/pháp lý | Chưa hoàn toàn | 30 lỗi oan→0,PII0; cần đối soát/khiếu nại và sửa hồ sơ hãng đã chịu | NV-OANH |
-| 9 Quyết định | Chưa đủ thủ tục | v2 Cải tiến thêm; vấn đề lịch sử ký/commit cần Coach xác nhận | NV-TUNG |
+| 9 Quyết định | Chưa đủ thủ tục | v2 Cải tiến thêm; commit ký gốc đã có trước baseline, còn bằng chứng commit/push snapshot trước thẻ cần Coach xác nhận | NV-TUNG |
 
 ### Runbook 4 · Sau sự cố trên thẻ (vòng 2)
 
@@ -441,6 +441,14 @@ Ghi các dòng đổi sau sự cố. Mỗi dòng vẫn phải có một PIC có 
 | Nói gì với bên thứ ba bị ảnh hưởng (hãng, shop, người nhận, nhân viên duyệt), ai nói, trong bao lâu? | NV-OANH xác nhận nhận khiếu nại trong30phút, gửi đối chiếu chứng từ/giữ chế tài trước17h ngày tình huống16/11/2026 theo thẻ; NV-TUNG chịu trách nhiệm quyết. Đây là kế hoạch mô phỏng, không email thực đã gửi. Nêu số lỗi bị rà soát, người xử lý và hạn cập nhật; không khẳng định thu hồi hậu quả đã xảy ra |
 | Dữ liệu cá nhân nào đã rời hệ thống mà không thu hồi được? Báo cho ai? | Gói S1 không phát hiện PII theo metric (0 ở3 mốc); không có căn cứ tuyên bố đã lộ. Báo NV-TUNG/NV-OANH nếu phát hiện thêm; đối chiếu payload/log vì metric mock không thấy mọi kênh |
 | Sự cố lộ ra trước qua số máy đo, phản hồi của người, hay đọc nội dung? Nguồn nào bàn chưa có? | Tình huống bắt đầu từ khiếu nại GHSH, sau đó đọc trace/report. Chưa có POD thật,lịch sử7ngày,telemetry mất log,ACK và thời gian review riêng; phải thu trước pilot |
+
+#### Bổ sung sau rà soát vận hành ngày 20/11/2026
+
+Đây là đề xuất quy trình trước pilot, chưa triển khai hệ thống task hoặc diễn tập. Với mỗi `carrier_strike_held`, NV-OANH phải nhận một task có mã đối soát, ticket/đơn/kiện/hãng, thời điểm giữ, lý do và hạn ACK 30 phút; chỉ lưu trường cần thiết trong hệ thống nội bộ có phân quyền, không chép PII/văn bản khách sang hãng. Kiểm lịch sử lỗi 7 ngày và chứng từ trước khi người có quyền quyết định chế tài; không giữ khoản hoàn hợp lệ chỉ vì trách nhiệm hãng đang chờ.
+
+Nếu quá 30 phút chưa ACK, báo NV-TUNG điều phối người có quyền thực sự, ghi nhận người nhận mới và hạn cập nhật; nếu chưa có người nhận, tiếp tục giữ chế tài và chưa mở pilot cho luồng này. Dự báo ca chuyển người chờ quá 60 phút thì áp dụng Runbook 3. Không tự động gỡ chặn hoặc gửi lỗi hãng khi task quá hạn. NV-OANH đo riêng thời gian xử lý và công của task held để cộng TCO/ROI theo kho; log held không chứng minh đã nhận hay đã hoàn tất task.
+
+Nguồn đối chiếu PIC: `data/world.json.staff` ghi NV-TUNG = Lê Thanh Tùng (giám sát vận hành/giữ công tắc), NV-HANH = Trần Thị Hạnh (trưởng ca/duyệt hoàn vượt hạn mức), NV-OANH = Phạm Kiều Oanh (kế toán đối soát). Không suy ra NV-OANH có quyền tự áp chế tài hợp đồng hoặc NV-TUNG có quyền duyệt hoàn vượt hạn mức; quyền cần được xác nhận trước pilot.
 
 ### Runbook 5 · Ba kịch bản "nếu … thì …" cho tuần đầu chạy thử thật
 

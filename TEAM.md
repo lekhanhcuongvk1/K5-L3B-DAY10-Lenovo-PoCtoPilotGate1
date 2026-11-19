@@ -157,7 +157,25 @@ Nội dung chuyên môn của phần việc:
 - Phiếu B B4/B5/B7.5/B7.6; Phiếu C C3.5/C4/C6/C9/C10/C11; `config/operating_gates.json` và báo cáo ba mốc.
 - `S1-20@11` minh họa ngày giao thiếu; loạt S1-40…43 minh họa lỗi tích lũy; after `carrier_strike_peak_per_day=2`, `held_carrier_strikes=2`.
 - Grade chung `R-S1-grade-20261119-161212-5110cc`: lỗi hãng oan 30→0, PII 0, chờ max 0, ca ùn 0 trong mock; không suy ra đã kiểm được SLA thật.
-- Lần collect sau khi thêm tên Cường vẫn báo thiếu commit `Sign acceptance criteria`. Danh sách đủ 4 người/report vẫn phải hoàn thiện bằng danh tính thực, dù checker chấp nhận tối thiểu một người. Không gán commit hay lần gửi thông báo chưa xảy ra cho cá nhân.
+- Cập nhật ngày 20/11/2026: TEAM và submission.json có đủ 4 thành viên khớp MSSV; commit ký gốc `4b9d370` lúc15:06:11 có trước baseline15:10:11. Mô tả thiếu commit ký ở bản cũ không còn đúng; bằng chứng commit/push snapshot trước nhận thẻ vẫn cần Coach xác nhận.
+
+### Bổ sung kết quả rà soát ngày 20/11/2026
+
+Theo yêu cầu của tôi, Codex hỗ trợ đọc và đối chiếu hồ sơ vận hành/pháp lý với code, dữ liệu mô phỏng và công cụ kiểm tra. Đây là đóng góp rà soát có AI hỗ trợ; không nhận là tôi tự viết code gốc, tự chạy công cụ bằng tay, đã demo, liên hệ đối tác hoặc được Coach phê duyệt.
+
+| Hạng mục rà soát | Bằng chứng và kết luận | Việc xử lý / giới hạn |
+|---|---|---|
+| HAZOP | B4 có5 dòng kỹ thuật và4 dòng ngoài kỹ thuật; C4 có5 dòng, gồm lịch sử7ngày chưa thấy trên trace. Có S1-01, S1-20/21, S1-40…43 | Đủ cấu trúc; giữ nguyên phân tích vòng1. DB sai dù đủ trường vẫn là rủi ro mở |
+| Checklist và PIC | B5/C11 đủ9 nhóm có PIC. staff: NV-TUNG/Lê Thanh Tùng giữ công tắc; NV-HANH/Trần Thị Hạnh duyệt hoàn vượt hạn mức; NV-OANH/Phạm Kiều Oanh đối soát | Mã PIC có người tương ứng trong mock; chưa chứng minh đã nhận việc thật. C11 làm rõ giới hạn thẩm quyền |
+| Operations và SLA | Config:1 người,6ca/giờ,SLA60phút,sampling10%,decision_note=true. Runbook báo sớm30phút,dừng trong5phút | Ngưỡng kế hoạch khớp; kênh cảnh báo mô phỏng và chờ=0 chưa chứng minh SLA hay thời gian dừng thật |
+| Giờ cao điểm | 14ca đồng thời,10phút/ca:1người thì ca cuối bắt đầu phút130. B7.6 ghi65/43,3phút với công suất gộp2/3người | ops.py mô phỏng công suất gộp; nếu người thật xử lý ca nguyên song song thì ca cuối bắt đầu phút60/40. Không coi số mô phỏng là dự báo chính xác thực tế; chưa đổi config khi chưa đo tải/ROI |
+| Legal và cổng ghi | Config chặn recipient_contact/customer_note/name/phone/street, yêu cầu nguyên nhân lỗi. write_gate kiểm carrier_at_fault/đúng kiện và dựng payload từ facts theo allowlist policy | Không gửi văn bản tự do; PII=0 chỉ là metric mock, chưa chứng minh mọi kênh dữ liệu đều an toàn |
+| Risk register/task held | C10 có tracking sai,trần2/ngày so với3/7ngày,công held và thủ tục. Guard giữ lỗi thứ3 và ghi log cho NV-OANH, chưa tạo task bền vững | Cập nhật rủi ro thủ tục lỗi thời; bổ sung C11 task/PIC/ACK30phút,điều phối quá hạn,giữ chế tài và đo công riêng. Đây là đề xuất trước pilot |
+| Bài nộp/quyết định | Grade lưu R-S1-grade-20261119-173049-5110cc PASS-VISIBLE; hash code5110ccfb8217. V1/v2 Cải tiến thêm; đủ4 thành viên | Giữ tiêu chí,snapshot,code/config. Main đã có bổ sung Lab9/crosswalk của nhóm; còn cần thống nhất nguồn. Test ẩn,demo,Coach và LMS chưa có bằng chứng hoàn tất |
+
+**Bàn giao:** cập nhật mục cá nhân và Phiếu C C10/C11; đồng bộ Phiếu C vào submission và sinh lại manifest bằng collect. Giữ các thay đổi chi phí và nguồn Lab9 mới của nhóm, giữ nguyên v1 và file khóa. Các đoạn bàn giao cũ cần đọc theo thời điểm ghi.
+
+**Kiểm chứng có AI hỗ trợ:** public tests13/13 đạt; tiêu chí/snapshot ok; config hợp lệ, hash code khớp grade đã lưu; check_submission in ĐỦ THÀNH PHẦN sau khi gom lại. Dùng nguyên report và nhật ký đã lưu, không tạo grade mới hay sửa thời điểm lịch sử. Commit/push là bước bàn giao Git, không thay xác nhận Coach hoặc nộp LMS.
 
 ### Exit ticket
 
